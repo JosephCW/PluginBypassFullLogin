@@ -1,0 +1,29 @@
+name: LoginBypass
+version: 1.0
+description: Allows admins/donators to join even when server is full.
+
+author: JosephCW
+website: http://www.github.com/josephcw/LoginLimitBypassPlugin
+
+main: com.github._josephcw.loginbypassplugin.JoinFull
+database: false
+
+commands:
+  loginbypass:
+    description: Sets plugin enabled/disabled.
+    aliases: [lb, joinfull, jf]
+    permission: loginbypass.toggle
+    usage: /<command>
+permissions:
+  loginbypass.*:
+    default: op
+    description: Access to all permissions/commands
+    children:
+      loginbypass.toggle: true
+      loginbypass.joinfull: true
+  loginbypass.toggle:
+    description: Toggles status of plugin
+    children:
+      loginbypass.joinfull: true
+  loginbypass.joinfull:
+    description: Allows user to join when server is full
