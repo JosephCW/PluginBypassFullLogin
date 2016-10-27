@@ -9,10 +9,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class JoinFull extends JavaPlugin implements Listener {
 
+	private PluginDescriptionFile pdf = this.getDescription();
+	
 	private boolean getStatusEnabled() {
 		return Boolean.valueOf(
 				getConfig().getString("STATUS"));
@@ -35,7 +38,7 @@ public class JoinFull extends JavaPlugin implements Listener {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		if(args.length != 1) {
-			sender.sendMessage(ChatColor.RED + "Usage: /" + commandLabel + " <on/off/status>");
+			sender.sendMessage(ChatColor.RED + "Usage: /" + commandLabel + " <on/off/status/info>");
 		} else {
 			switch(args[0]) {
 			case "status":
@@ -49,8 +52,13 @@ public class JoinFull extends JavaPlugin implements Listener {
 				sender.sendMessage(ChatColor.RED + "LoginBypass has been disabled!");
 				setStatusEnabled(false);
 				break;
+			case "info":
+				sender.sendMessage(ChatColor.DARK_GREEN + "LoginBypass: " + pdf.getDescription());
+				sender.sendMessage(ChatColor.DARK_GREEN + "Version: " + pdf.getVersion());
+				sender.sendMessage(ChatColor.DARK_GREEN + "Made By: " + pdf.getAuthors());
+				// No break, when users send info, also send command usage
 			default:
-				sender.sendMessage(ChatColor.RED + "Usage: /" + commandLabel + " <on/off/status>");
+				sender.sendMessage(ChatColor.RED + "Usage: /" + commandLabel + " <on/off/status/info>");
 				break;
 			}
 		}
