@@ -11,4 +11,4 @@ Permissions:
 * loginbypass.joinfull - allows user to join when the server is full.  
   
 Commands:  
-* /loginbypass <on/off/status/info> aliases: [lb, joinfull, jf]  
+* /loginbypass \<on/off/status/info> aliases: [lb, joinfull, jf]  
